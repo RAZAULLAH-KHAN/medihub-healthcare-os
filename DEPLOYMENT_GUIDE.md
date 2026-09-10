@@ -36,12 +36,11 @@ Deploying via the Vercel Dashboard connects your GitHub repository so every new 
    **`RAZAULLAH-KHAN/medihub-healthcare-os`**
 4. Click **"Import"**.
 
-### Step 2: Configure Project Settings (CRITICAL)
+### Step 2: Configure Project Settings
 In the Project Configuration screen:
 
 1. **Framework Preset**: `Next.js` (automatically detected).
-2. **Root Directory**: Click **"Edit"** and select **`web`**  
-   *(Since the Next.js application is located in the `web` subfolder, setting the Root Directory to `web` is essential).*
+2. **Root Directory**: Leave as default `./` (the Next.js application is now organized directly at the root).
 3. **Build Command**: Leave default (`npm run build`).
 4. **Output Directory**: Leave default (`.next`).
 
