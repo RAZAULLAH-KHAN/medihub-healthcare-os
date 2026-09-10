@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0f766e;
+  --color-primary-hover: #0b5a54;
+  --color-secondary: #3b82f6;
+  --color-accent: #f59e0b;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-emergency: #b91c1c;
+  --color-emergency-bg: #fee2e2;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+  --color-emergency: var(--color-emergency);
+  --color-emergency-bg: var(--color-emergency-bg);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+input,
+select,
+textarea {
+  min-height: 44px;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
