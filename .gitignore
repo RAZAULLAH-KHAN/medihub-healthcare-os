@@ -20,5 +20,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 *.tsbuildinfo
+next-env.d.ts
+.vercel/
 # Supabase temp
 **/supabase/.temp/
