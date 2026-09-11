@@ -24,3 +24,5 @@ next-env.d.ts
 .vercel/
 # Supabase temp
 **/supabase/.temp/
+
+.vercel
