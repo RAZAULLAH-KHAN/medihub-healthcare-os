@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { requireRole } from "@/lib/auth";
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PatientQueueLive } from "@/components/queue/PatientQueueLive";
@@ -8,11 +7,10 @@ import { CheckInButton } from "@/components/queue/CheckInButton";
 
 export default async function QueuePage() {
   const { profile } = await requireRole(["patient"]);
-  const supabase = await createClient();
   const admin = createAdminClient();
 
-  // 1. Fetch this patient's appointments
-  const { data: myAppointments } = await supabase
+  // 1. Fetch this patient's appointments using admin client to ensure 100% reliable joined data
+  const { data: myAppointments } = await admin
     .from("appointments")
     .select(
       "id, slot_time, status, is_emergency, hospital_id, hospitals(name), doctors(specialty, profiles(name))",
