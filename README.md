@@ -5,10 +5,11 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL%20%26%20Realtime-emerald?style=flat&logo=supabase)](https://supabase.com/)
 [![Google Gemini](https://img.shields.io/badge/Google%20AI-Gemini%203.6%20Flash-orange?style=flat&logo=google)](https://ai.google.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-cyan?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
+[![Vercel Production](https://img.shields.io/badge/Live%20Demo-Vercel%20Active-success?style=flat&logo=vercel)](https://medihub-healthcare-system-razaullah-khans-projects.vercel.app)
 
-> **Lead Developer & Solutions Architect:** Raza  
-> **Platform Model:** Multi-Tenant Healthcare Operating System ("Daraz / Shopify for Healthcare")
+> **🚀 Live Production URL:** [https://medihub-healthcare-system-razaullah-khans-projects.vercel.app](https://medihub-healthcare-system-razaullah-khans-projects.vercel.app)  
+> **Lead Developer & Solutions Architect:** Razaullah Khan  
+> **Platform Model:** Multi-Tenant Healthcare Operating System ("Shopify for Healthcare")
 
 ---
 
@@ -110,8 +111,8 @@ Password123!
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/RAZAULLAH-KHAN/medihub-healthcare-os.git
-cd medihub-healthcare-os/web
+git clone https://github.com/RAZAULLAH-KHAN/medihub-healthcare-system.git
+cd medihub-healthcare-system
 ```
 
 ### 2. Install Dependencies
@@ -120,7 +121,7 @@ npm install
 ```
 
 ### 3. Environment Variables
-Create `.env.local` inside the `web/` directory:
+Create `.env.local` in the root directory:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
@@ -131,6 +132,7 @@ AI_API_KEY=your-gemini-api-key
 GEMINI_MODEL=gemini-2.0-flash
 
 CRON_SECRET=your-cron-secret
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 ### 4. Run Development Server
@@ -147,37 +149,27 @@ node --env-file=.env.local scripts/test-realtime-flow.mjs
 
 ---
 
-## 🚢 Vercel Deployment Guide
+## 🚢 Live Production Deployment
 
-1. Push this repository to GitHub:
-   ```bash
-   git remote add origin https://github.com/RAZAULLAH-KHAN/medihub-healthcare-os.git
-   git branch -M main
-   git push -u origin main
-   ```
-2. Import the project in [Vercel](https://vercel.com/):
-   - **Root Directory:** Set to `web`
-   - **Framework Preset:** Next.js
-3. Configure the Environment Variables in Vercel Dashboard:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `AI_PROVIDER` (`gemini`)
-   - `AI_API_KEY`
-   - `GEMINI_MODEL` (`gemini-2.0-flash`)
-   - `CRON_SECRET`
-4. Click **Deploy**!
+- **Production URL:** [https://medihub-healthcare-system-razaullah-khans-projects.vercel.app](https://medihub-healthcare-system-razaullah-khans-projects.vercel.app)
+- **Deployment Platform:** Vercel (Next.js Turbopack Edge Infrastructure)
+- **Database:** Supabase PostgreSQL with Realtime WebSocket Replication
+- **AI Engine:** Google Gemini 3.6 Flash
+
+For full deployment and environment setup instructions, see [`docs/DEPLOYMENT_GUIDE.md`](docs/DEPLOYMENT_GUIDE.md).
 
 ---
 
 ## 📄 Documentation Links
-- [Product Requirements Document (PRD)](01_Detailed_Client_PRD_MediHub.md)
-- [Technical Architecture Document](02_Technical_Architecture_Document.md)
-- [Security & Access Policy (RLS)](03_Security_Access_Document.md)
-- [Frontend Design Specifications](04_Frontend_Specification_Document.md)
-- [Demo Script & Evaluation Guide](DEMO_SCRIPT.md)
+- [Product Requirements Document (PRD)](docs/01_Detailed_Client_PRD_MediHub.md)
+- [Technical Architecture Document](docs/02_Technical_Architecture_Document.md)
+- [Security & Access Policy (RLS)](docs/03_Security_Access_Document.md)
+- [Frontend Design Specifications](docs/04_Frontend_Specification_Document.md)
+- [Feature Ticket List](docs/05_Feature_Ticket_List.md)
+- [Demo Script & Presentation Guide](docs/DEMO_SCRIPT.md)
+- [Vercel Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
 
 ---
 
 **Built with pride for Pakistan Healthcare Modernization.**  
-**Lead Developer:** Raza
+**Lead Developer & Solutions Architect:** Razaullah Khan
