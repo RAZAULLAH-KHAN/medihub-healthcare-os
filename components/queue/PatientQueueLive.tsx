@@ -15,6 +15,7 @@ export function PatientQueueLive({
   initialStatus,
   isEmergency,
   hospitalName,
+  serviceDate,
 }: {
   tokenId: string;
   hospitalId: string;
@@ -23,6 +24,7 @@ export function PatientQueueLive({
   initialStatus: string;
   isEmergency: boolean;
   hospitalName: string;
+  serviceDate?: string;
 }) {
   const [number, setNumber] = useState(initialNumber);
   const [status, setStatus] = useState(initialStatus);
@@ -37,8 +39,10 @@ export function PatientQueueLive({
         .from("queue_tokens")
         .select("id, token_number, status, is_emergency")
         .eq("hospital_id", hospitalId)
-        .eq("service_date", new Date().toISOString().slice(0, 10))
         .in("status", ["waiting", "called", "in_progress"]);
+      if (serviceDate) {
+        q = q.eq("service_date", serviceDate);
+      }
       if (departmentId) q = q.eq("department_id", departmentId);
       const { data } = await q;
       const waiting = (data ?? []).sort((a, b) => {
@@ -79,7 +83,7 @@ export function PatientQueueLive({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [tokenId, hospitalId, departmentId]);
+  }, [tokenId, hospitalId, departmentId, serviceDate]);
 
   const position = (ahead ?? 0) + 1;
   const wait = estimateWaitMinutes(position);
@@ -93,27 +97,38 @@ export function PatientQueueLive({
           : "waiting";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-w-lg mx-auto">
       <OfflineBanner />
-      <p className="text-text-secondary">{hospitalName}</p>
-      <div className="rounded-2xl bg-primary px-6 py-12 text-center text-white">
-        <p className="text-sm uppercase tracking-widest">Your token</p>
+      <div className="flex items-center justify-between border-b border-border/60 pb-3">
+        <div>
+          <span className="text-[11px] font-bold text-primary uppercase tracking-wider">Live Healthcare Queue</span>
+          <p className="font-bold text-base text-text-primary">{hospitalName}</p>
+        </div>
+        <StatusBadge kind={kind} label={status.replace("_", " ")} />
+      </div>
+
+      <div className="rounded-3xl bg-gradient-to-br from-primary via-primary to-primary-hover p-8 text-center text-white shadow-xl shadow-primary/20">
+        <p className="text-xs font-semibold uppercase tracking-widest text-white/80">Your Live Queue Token</p>
         <p
-          className="mt-2 text-7xl font-semibold tabular-nums"
+          className="mt-2 text-8xl font-black tracking-tight tabular-nums drop-shadow-xs"
           aria-live="polite"
         >
-          {number}
+          #{number}
         </p>
-        <p className="mt-4 text-lg" aria-live="polite">
-          You are #{position}
-          {wait ? ` · about ${wait} min` : ""}
-        </p>
+        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold backdrop-blur-xs">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>You are #{position} in line</span>
+          {wait ? <span>· ~{wait} min estimated wait</span> : ""}
+        </div>
       </div>
-      <StatusBadge kind={kind} label={status.replace("_", " ")} />
-      <p className="text-sm text-text-secondary">
-        Last known token {lastKnown}. This screen updates when reception calls
-        the next patient.
-      </p>
+
+      <div className="rounded-2xl border border-border bg-surface p-4 text-xs text-text-secondary flex items-center justify-between shadow-xs">
+        <span>Current Token Served: <strong className="text-text-primary font-bold">#{lastKnown}</strong></span>
+        <span className="inline-flex items-center gap-1.5 text-emerald-600 font-semibold">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          Live WebSocket Sync
+        </span>
+      </div>
     </div>
   );
 }
